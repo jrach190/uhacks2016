@@ -1,3 +1,11 @@
+"""
+Code originally from https://realpython.com/blog/python/face-detection-in-python-using-a-webcam/
+Code adapted for use in UHacks2016 by Evan Williams and Jonathan Rach
+Code analyzes images, detects faces, and if the faces are getting larger (coming closer to the camera)
+then it triggers a call to the Edison Board's servomotor and delays execution of further tasks until
+the servo finishes responding.
+Depends on OpenCV 3.0.0
+"""
 import cv2
 import sys
 import time
