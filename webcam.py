@@ -9,7 +9,7 @@ Depends on OpenCV 3.0.0
 import cv2
 import sys
 import time
-
+import socket
 
 cascPath = "C:\Users\Evan Williams\Desktop\Webcam-Face-Detect-master\haarcascade_frontalface_default.xml"
 faceCascade = cv2.CascadeClassifier(cascPath)
@@ -21,6 +21,11 @@ cont_detections = 0
 miss_detections = 0
 active1=False
 active2=False
+
+UDP_IP = "192.168.0.3"
+UDP_PORT = 5005
+MESSAGE = "OPEN"
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # Internet, UDP
 
 while True:
     active1=False
@@ -89,6 +94,7 @@ while True:
                 # Trigger servo for x ms
                 # Wait for y ms
                 # Trigger servo (reverse) for z ms
+                sock.sendto(MESSAGE, (UDP_IP, UDP_PORT))
                 time.sleep(15)
                 cont_detections=0
                 miss_detections=0
@@ -101,9 +107,11 @@ while True:
                 # Trigger servo for x ms
                 # Wait for y ms
                 # Trigger servo (reverse) for z ms
+                sock.sendto(MESSAGE, (UDP_IP, UDP_PORT))
                 time.sleep(15)
                 cont_detections=0
                 miss_detections=0
+                
                 
     time.sleep(.1)
 # When everything is done, release the capture

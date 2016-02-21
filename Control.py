@@ -1,22 +1,28 @@
+"""
+Code originally from https://software.intel.com/en-us/iot/hardware/sensors/uln200xa-stepper-drive
+Adapted by John Martincic and N Vijay Karthikeyan for UHacks2016
+Code accesses a stepper motor on an arduino control board and turns it at a set rotation speed and
+tells the motor the number of steps to turn
+"""
 import socket
 import time, sys, signal, atexit
 import pyupm_uln200xa as ctlr
 
-UDP_IP = "127.0.0.1"
-UDP_PORT = 5005
-i=True
+#UDP_IP = "192.168.0.3"
+#UDP_PORT = 5005
+#i=True
 ctlr_obj = ctlr.ULN200XA(4096, 8, 9, 10, 11) #Instantiate Stepper Motor
 
 
-sock = socket.socket(socket.AF_INET, # Internet
-                     socket.SOCK_DGRAM) # UDP
-sock.bind((UDP_IP, UDP_PORT))
+#sock = socket.socket(socket.AF_INET, # Internet
+#                     socket.SOCK_DGRAM) # UDP
+#sock.bind((UDP_IP, UDP_PORT))
 
-while i:
-    data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
-    if len(data):
-        i=False
-    print "Access Granted"
+#while i:
+#    data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
+#   if len(data):
+#       i=False
+#   print "Access Granted"
 
 ## Exit handlers ##
 # This stops python from printing a stacktrace when you hit control-C
